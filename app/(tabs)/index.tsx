@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
 import { Link } from 'expo-router';
 
 const LoginScreen: React.FC = () => {
@@ -7,49 +14,61 @@ const LoginScreen: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Aqui você pode adicionar a lógica de autenticação
     console.log('Username:', username);
     console.log('Password:', password);
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <Link href="/tab_one" asChild>
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Sign in</Text>
-        </TouchableOpacity>
-      </Link>
-    </View>
+    <ImageBackground
+      source={require('../../assets/images/wallpaper_green.jpg')}
+      style={styles.background}
+      resizeMode="cover"
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          placeholderTextColor="#ccc"
+          value={username}
+          onChangeText={setUsername}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          placeholderTextColor="#ccc"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+        <Link href="/home" asChild>
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Sign in</Text>
+          </TouchableOpacity>
+        </Link>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#6A5ACD', // Cor de fundo roxa
     padding: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Sombra escura por cima da imagem
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: 'white', // Cor do texto branco
+    color: 'white',
   },
   input: {
     width: '100%',
@@ -59,12 +78,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,
-    color: 'white', // Cor do texto branco
+    color: 'white',
   },
   button: {
     width: '100%',
     height: 40,
-    backgroundColor: '#483D8B', // Cor do botão roxo mais escuro
+    backgroundColor: 'rgba(37, 184, 56, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
