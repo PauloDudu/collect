@@ -1,3 +1,4 @@
+import { Link } from 'expo-router';
 import React from 'react';
 import {
   View,
@@ -39,7 +40,9 @@ export default function ModalMenu({ visible, onClose }: ModalMenuProps) {
           </View>
           <View style={styles.items}>
             <MenuItem icon={require('../assets/icons/profile.png')} label="PROFILE" />
-            <MenuItem icon={require('../assets/icons/settings.png')} label="SETTINGS" />
+            <Link href="/settings" >
+              <MenuItem icon={require('../assets/icons/settings.png')} label="SETTINGS" />
+            </Link>
             <MenuItem icon={require('../assets/icons/friends.png')} label="FRIENDS" />
             <MenuItem icon={require('../assets/icons/trophy.png')} label="ACHIEVEMENT" />
             <MenuItem icon={require('../assets/icons/exit.png')} label="EXIT" />
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
   },
   menu: {
     width: Math.min(width * 0.7, 400),
-    backgroundColor: '#131334',
+    backgroundColor: 'rgb(0, 33, 0)',
     paddingTop: height * 0.05,
     paddingHorizontal: width * 0.04,
     borderTopLeftRadius: 20,

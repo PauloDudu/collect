@@ -11,6 +11,7 @@ import {
   Platform,
 } from 'react-native';
 import Slider from '@react-native-community/slider';
+import { Link } from 'expo-router';
 
 const { width, height } = Dimensions.get('window');
 const scale = PixelRatio.getFontScale();
@@ -32,6 +33,7 @@ export default function SettingsScreen() {
       <View style={styles.content}>
         {/* Header with Back Arrow and Logo */}
         <View style={styles.header}>
+        <Link href="/home" >
           <TouchableOpacity
             onPress={handleBackPress}
             accessible
@@ -43,6 +45,7 @@ export default function SettingsScreen() {
               accessibilityLabel="Back arrow"
             />
           </TouchableOpacity>
+          </Link>
           <Image
             source={require('../../assets/images/ai_logo.png')}
             style={styles.logo}
