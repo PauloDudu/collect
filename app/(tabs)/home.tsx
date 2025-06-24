@@ -15,6 +15,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Constants from "expo-constants";
 import ThreeDModelView from "@/components/ThreeDModelView";
+import ARModelView from "@/components/ARModelView";
 
 // Importa o mock dos modelos
 import modelsMock from "@/assets/models/models-mockdb";
@@ -42,11 +43,17 @@ export default function App() {
 
         {isAR ? (
           isRunningInExpo ? (
-            <Text style={{ color: "orange", marginTop: 20 }}>
-              AR real disponível apenas na versão instalada
-            </Text>
+            <View style={styles.expoMessage}>
+              <Text style={styles.expoTitle}>AR Real</Text>
+              <Text style={styles.expoText}>
+                Para experimentar AR real, instale o aplicativo em seu dispositivo.
+              </Text>
+              <Text style={styles.expoSubtext}>
+                O AR real requer acesso à câmera e sensores do dispositivo.
+              </Text>
+            </View>
           ) : (
-            <Text></Text>
+            <ARModelView modelUrl={selectedModel.url} />
           )
         ) : (
           <ThreeDModelView modelUrl={selectedModel.url} />
@@ -132,6 +139,32 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 14 * scale,
     fontWeight: "500",
+  },
+  expoMessage: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    borderRadius: 10,
+    margin: 20,
+  },
+  expoTitle: {
+    color: "#00ff00",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  expoText: {
+    color: "#fff",
+    fontSize: 14,
+    textAlign: "center",
+    marginBottom: 8,
+  },
+  expoSubtext: {
+    color: "#ccc",
+    fontSize: 12,
+    textAlign: "center",
   },
   modalOverlay: {
     flex: 1,
